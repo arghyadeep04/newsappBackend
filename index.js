@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !=="production") {
+    require('dotenv').config()
+}
 const mongoose=require('mongoose')
 const exp=require('express');
 const cors=require('cors')
@@ -13,7 +16,7 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use(exp.urlencoded({extended:true}))
 app.use(exp.json())
-mongoose.connect('mongodb://127.0.0.1:27017/myNews')
+mongoose.connect(process.env.ATLAS_URL)
 .then(()=>{
     console.log("connected")
 })
@@ -28,7 +31,9 @@ app.get("/",(req,res)=>{
 })
 
 
-
-app.listen(80,()=>{
-    console.log("http:/localhost:80")
+app.listen(process.env.PORT||80,()=>{
+    console.log(`http://localhost${process.env.PORT||80}`)
 })
+// app.listen(80,()=>{
+//     console.log("http:/localhost:80")
+// })
