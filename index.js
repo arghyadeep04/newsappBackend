@@ -32,7 +32,7 @@ app.get("/",(req,res)=>{
 
 
 app.listen(process.env.PORT||80,()=>{
-    console.log(`http://localhost${process.env.PORT||80}`)
+    console.log(`http://localhost:${process.env.PORT||80}`)
 })
 // app.listen(80,()=>{
 //     console.log("http:/localhost:80")
