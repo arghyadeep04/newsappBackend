@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use(exp.urlencoded({extended:true}))
 app.use(exp.json())
-mongoose.connect(process.env.ATLAS_URL)
+mongoose.connect(`${process.env.ATLAS_URL}`)
 .then(()=>{
     console.log("connected")
 })
