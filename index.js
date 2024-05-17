@@ -9,11 +9,15 @@ const userRouter = require('./routes/users');
 const likeRouter = require('./routes/likes');
 // const noteRouter = require('./routes/notes');
 const app=exp();
+const corsOptions = {
+    credentials: true,
+    origin: '*' // Whitelist 
+};
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors())
 
 // parse application/json
 app.use(bodyParser.json())
-app.use(cors())
 app.use(exp.urlencoded({extended:true}))
 app.use(exp.json())
 mongoose.connect(`${process.env.ATLAS_URL}`)
