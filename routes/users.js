@@ -100,8 +100,10 @@ userRouter.post('/delFromFav',getUser,async (req,res)=>{
 userRouter.post('/addToSeen',getUser,async (req,res)=>{
     if(req.user){
         let currentVis=req.user.visited;
-        currentVis[req.body.newsUrl]=1;
-        await User.findByIdAndUpdate(req.user._id,{$push:{visited:req.body.newsUrl}})
+        // currentVis[req.body.newsUrl]=1;
+        if(!currentVis.find(e=>e==req.body.newsUrl)){
+            await User.findByIdAndUpdate(req.user._id,{$push:{visited:req.body.newsUrl}})
+        }
         res.send({status:"done"})
     }else{
         res.send({status:"error"})
